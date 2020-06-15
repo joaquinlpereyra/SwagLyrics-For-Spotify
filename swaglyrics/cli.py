@@ -113,7 +113,7 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
     except FileNotFoundError:
         pass
     init(autoreset=True)
-    print(Fore.CYAN + Style.BRIGHT + f'\nGetting lyrics for {song} by {artist}.\n')
+    print(Style.BRIGHT + f'\n{song} | {artist}\n')
     lyrics = get_lyrics(song, artist)
     if not lyrics:
         lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"

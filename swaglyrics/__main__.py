@@ -67,28 +67,8 @@ def show_cli(make_issue=False):
     try:
         song, artist = spotify.current()  # get currently playing song, artist
         print(lyrics(song, artist, make_issue))
-        print('\n(Press Ctrl+C to quit)')
     except SpotifyNotRunning as e:
         print(e)
-        print('\n(Press Ctrl+C to quit)')
-        song, artist = None, None
-    while True:
-        # refresh every 5s to check whether song changed
-        # if changed, display the new lyrics
-        try:
-            try:
-                if spotify.current() == (song, artist):
-                    raise SameSongPlaying
-                else:
-                    song, artist = spotify.current()
-                    clear()
-                    print(lyrics(song, artist, make_issue))
-                    print('\n(Press Ctrl+C to quit)')
-            except (SpotifyNotRunning, SameSongPlaying):
-                time.sleep(5)
-        except KeyboardInterrupt:
-            print('\nSure boss, exiting.')
-            sys.exit()
 
 
 def main():
